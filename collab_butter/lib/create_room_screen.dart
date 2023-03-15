@@ -1,3 +1,4 @@
+import 'package:collab_butter/paint_screen.dart';
 import 'package:collab_butter/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,9 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
         "occupancy": _maxRoundsValue!,
         "maxRounds": _roomSizeValue!
       };
-      // Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaintScreen(data: data, screenFrom: 'createRoom')));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>
+              PaintScreen(data: data, screenFrom: 'createRoom')));
     }
   }
 

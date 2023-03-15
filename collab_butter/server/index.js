@@ -13,11 +13,23 @@ var io = require("socket.io")(server);
 app.use(express.json());
 
 //connect to mongodb
-const DB = 'mongodb+srv://siddushetty30:Siddesh3125@cluster0.mbwydne.mongodb.net/?retryWrites=true&w=majority';
+
 mongoose.connect(DB).then(() =>{
     console.log("Connection succesfull");
 }).catch((e) =>{
     console.log(e);
+});
+
+io.on('connection',(socket) =>{
+console.log('connected');
+socket.on('create-game',async({nickname,name,occupancy,maxRounds}) =>{
+    try{
+
+    }catch (e){
+        
+    }
+
+})
 })
 
 server.listen(port,"0.0.0.0",() =>{

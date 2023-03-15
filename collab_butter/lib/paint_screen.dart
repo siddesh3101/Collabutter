@@ -3,7 +3,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class PaintScreen extends StatefulWidget {
-  const PaintScreen({super.key});
+  const PaintScreen({super.key, required this.data, required this.screenFrom});
+  final Map<String, String> data;
+  final String screenFrom;
 
   @override
   State<PaintScreen> createState() => _PaintScreenState();
@@ -26,6 +28,10 @@ class _PaintScreenState extends State<PaintScreen> {
     });
 
     _socket.connect();
+
+    if (widget.screenFrom == 'createRoom') {
+      _socket.emit('create-game', widget.data);
+    }
 
     //listen to socket
     _socket.onConnect((data) {
