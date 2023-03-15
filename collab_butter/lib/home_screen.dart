@@ -1,4 +1,5 @@
 import 'package:collab_butter/create_room_screen.dart';
+import 'package:collab_butter/join_room.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -43,7 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => JoinRoomScreen(),
+                )),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                     textStyle: MaterialStateProperty.all(
