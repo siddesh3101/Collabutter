@@ -1,5 +1,6 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class PaintScreen extends StatefulWidget {
   const PaintScreen({super.key});
@@ -9,6 +10,7 @@ class PaintScreen extends StatefulWidget {
 }
 
 class _PaintScreenState extends State<PaintScreen> {
+  late IO.Socket _socket;
   @override
   void initState() {
     // TODO: implement initState
@@ -17,7 +19,19 @@ class _PaintScreenState extends State<PaintScreen> {
   }
 
   //Socket Io client connection
-  void connect() {}
+  void connect() {
+    _socket = IO.io('http://192.168.0.9:3000', <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': false
+    });
+
+    _socket.connect();
+
+    //listen to socket
+    _socket.onConnect((data) {
+      print('connected');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
