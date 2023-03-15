@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -13,6 +14,7 @@ class PaintScreen extends StatefulWidget {
 
 class _PaintScreenState extends State<PaintScreen> {
   late IO.Socket _socket;
+  String? dataofRoom = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -35,12 +37,26 @@ class _PaintScreenState extends State<PaintScreen> {
 
     //listen to socket
     _socket.onConnect((data) {
+      _socket.on('updateRoom', (roomData) {
+        setState(() {
+          dataofRoom = roomData;
+        });
+
+        if (roomData['isJoin'] != true) {
+          //start the timer
+        }
+      });
+      _socket.on('notCorrectGame', (roomData) {
+        print(roomData);
+      });
       print('connected');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Container(),
+    );
   }
 }
