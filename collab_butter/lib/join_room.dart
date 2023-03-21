@@ -1,3 +1,4 @@
+import 'package:collab_butter/paint_screen.dart';
 import 'package:collab_butter/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +21,9 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
         "name": _roomNameController.text
       };
 
-      // Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) =>
-      //         PaintScreen(data: data, screenFrom: 'joinRoom')));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>
+              PaintScreen(data: data, screenFrom: 'joinRoom')));
     }
   }
 
